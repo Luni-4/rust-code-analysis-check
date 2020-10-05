@@ -1,0 +1,44 @@
+{
+    "name": "rust-code-analysis-check",
+    "version": "0.0.1",
+    "private": false,
+    "description": "Run rust-code-analysis-cli and annotate the metric results",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "ncc build src/main.ts --minify",
+        "watch": "ncc build src/main.ts --watch --minify",
+        "test": "jest --passWithNoTests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Luni-4/rust-code-analysis-check.git"
+    },
+    "keywords": [
+        "actions",
+        "rust",
+        "rust-code-analysis",
+        "rust-code-analysis-cli"
+    ],
+    "author": "Luni-4",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Luni-4/rust-code-analysis-check/issues"
+    },
+    "dependencies": {
+        "@actions/core": "^1.2.4",
+        "@actions/github": "^3.0.0",
+        "@actions/io": "^1.0.2",
+        "@actions/exec": "^1.0.4",
+        "npm-check-updates": "^7.0.1",
+        "string-argv": "^0.3.1"
+    },
+    "devDependencies": {
+        "@types/jest": "^26.0.0",
+        "@types/node": "^14.0.13",
+        "@vercel/ncc": "^0.24.1",
+        "jest": "^26.0.1",
+        "jest-circus": "^26.0.1",
+        "ts-jest": "^26.1.0",
+        "typescript": "^3.9.5"
+    }
+}

@@ -1,0 +1,21 @@
+name: 'rust-code-analysis-check'
+description: 'Run rust-code-analysis-cli and post the resultant metrics as a prospective summary'
+author: 'Luni-4'
+branding:
+  icon: play-circle
+  color: black
+
+inputs:
+  token:
+    description: GitHub token
+    required: true
+  directory:
+    description: The directory to be parsed.
+    required: true
+  name:
+    description: Display name of the created GitHub check. Must be unique across several Luni-4/rust-code-analysis-check invocations.
+    default: rust-code-analysis-cli
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
