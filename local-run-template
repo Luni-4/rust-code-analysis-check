@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Run this script to build and test this action locally
+
+# Install npm dependencies
+npm install
+
+# Run the `build` script defined in package.json
+npm run build
+
+# Run the `test` script defined in package.json
+npm run test
