@@ -320,7 +320,7 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
         let annotation: ChecksCreateParamsOutputAnnotations = {
             path: contents.name,
             start_line: contents.start_line,
-            end_line: 3, //contents.end_line,
+            end_line: contents.end_line,
             annotation_level: 'notice',
             //title: contents.name,
             message: this.getAnnotationMetrics(contents.metrics),
