@@ -12,9 +12,9 @@ type ChecksCreateParamsOutputAnnotations = any;
 
 // Json structure of the files returned by rust-code-analysis-cli
 interface RcaFile {
-  filepath: string,
-  line_start: number,
-  line_end: number,
+  name: string,
+  start_line: number,
+  end_line: number,
   kind: string,
   metrics: Metrics,
   spaces: any, // This field is a JSON array, containing other JSON arrays
@@ -316,11 +316,11 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
     // Save an annotation in memory
     private addAnnotation(contents: RcaFile) {
         let annotation: any = {
-            path: contents.filepath,
-            start_line: contents.line_start,
-            end_line: contents.line_end,
+            path: contents.name,
+            start_line: contents.start_line,
+            end_line: contents.end_line,
             annotation_level: 'notice',
-            title: contents.filepath,
+            title: contents.name,
             message: this.getAnnotationMetrics(contents.metrics),
         };
 
@@ -347,19 +347,20 @@ ${this.file_metrics.join('\n')}`;
     // Return file metrics formatted as markdown
     private getFileMetrics(contents: RcaFile): string {
         return `<details>
-<summary><b>${contents.filepath}</b></summary>
+<summary><b>${contents.name}</b></summary>
 
 ${this.getMetrics(contents.metrics)}
 </details>`;
     }
 
     // Return space metrics annotations formatted as markdown
-    private getAnnotationMetrics(metrics: Metrics): string {
-        return `<details>
+    private getAnnotationMetrics(_metrics: Metrics): string {
+        return `Hello`;
+/*<details>
 <summary><b>Space Metrics</b></summary>
 
 ${this.getMetrics(metrics)}
-</details>`;
+</details>`;*/
     }
 
     // Returns metrics formatted as markdown
