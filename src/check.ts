@@ -296,20 +296,7 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
         // NOTE: We can use recursion because we know beforehand that
         // ends and there are not so many levels.
 
-        let annotation: ChecksCreateParamsOutputAnnotations = {
-            path: contents.name,
-            start_line: contents.start_line,
-            end_line: contents.end_line,
-            annotation_level: 'notice',
-            title: contents.name,
-            message: this.getAnnotationMetrics(contents.metrics),
-        };
-
-        // FIXME: Perhaps we should do something for spaces on a single line.
-        // Retrieving the file from GitHub and getting the length of the column?
-
-        this.annotations.push(annotation);
-
+        this.addAnnotation(contents);
 
         // Iterate over spaces
         /*for (const space of contents.spaces) {
@@ -329,7 +316,7 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
     }
 
     // Save an annotation in memory
-    /*private addAnnotation(_contents: RcaFile) {
+    private addAnnotation(contents: RcaFile) {
         let annotation: ChecksCreateParamsOutputAnnotations = {
             path: contents.name,
             start_line: contents.start_line,
@@ -343,7 +330,7 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
         // Retrieving the file from GitHub and getting the length of the column?
 
         this.annotations.push(annotation);
-        }*/
+    }
 
 
 
@@ -369,13 +356,12 @@ ${this.getMetrics(contents.metrics)}
     }
 
     // Return space metrics annotations formatted as markdown
-    private getAnnotationMetrics(_metrics: Metrics): string {
-        return `Hello`;
-/*<details>
+    private getAnnotationMetrics(metrics: Metrics): string {
+        return `<details>
 <summary><b>Space Metrics</b></summary>
 
 ${this.getMetrics(metrics)}
-</details>`;*/
+</details>`;
     }
 
     // Returns metrics formatted as markdown
