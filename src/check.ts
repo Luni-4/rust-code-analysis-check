@@ -148,10 +148,11 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
 
         try {
             // Check if there are annotations
-            if (this.annotations.length == 0) {
+            if (this.annotations.length === 0) {
                 // Display only global metrics
                 await this.globalMetricsCheck(client, checkRunId, options);
             } else {
+                core.info("here");
                 // Display global and space metrics
                 await this.allMetricsCheck(client, checkRunId, options);
             }
@@ -296,12 +297,13 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
         // NOTE: We can use recursion because we know beforehand that
         // ends and there are not so many levels.
 
+
+        core.info("here here");
+
         // Iterate over spaces
         for (const space of contents.spaces) {
             // Convert the space in an object
             const space_obj = JSON.parse(space);
-
-            core.info(space_obj)
 
             // Create an annotation for the space
             this.addAnnotation(space_obj);
@@ -325,8 +327,6 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
             title: contents.name,
             message: this.getAnnotationMetrics(contents.metrics),
         };
-
-        core.info("here");
 
         // FIXME: Perhaps we should do something for spaces on a single line.
         // Retrieving the file from GitHub and getting the length of the column?
