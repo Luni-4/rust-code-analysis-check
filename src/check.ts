@@ -356,12 +356,13 @@ ${this.getMetrics(contents.metrics)}
     }
 
     // Return space metrics annotations formatted as markdown
-    private getAnnotationMetrics(metrics: Metrics): string {
-        return `<details>
+    private getAnnotationMetrics(_metrics: Metrics): string {
+        return `**ciao**`;
+/*<details>
 <summary><b>Space Metrics</b></summary>
 
 ${this.getMetrics(metrics)}
-</details>`;
+</details>`;*/
     }
 
     // Returns metrics formatted as markdown
