@@ -318,7 +318,7 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
     // Save an annotation in memory
     private addAnnotation(contents: RcaFile) {
         let annotation: ChecksCreateParamsOutputAnnotations = {
-            path: 'main.rs', //contents.name,
+            path: contents.name,
             start_line: contents.start_line,
             end_line: contents.end_line,
             annotation_level: 'notice',
