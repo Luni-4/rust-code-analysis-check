@@ -108,9 +108,9 @@ export class CheckRunner {
         this.file_metrics.push(this.getFileMetrics(contents));
 
         // Create space annotations (if there is at least one space)
-        if (contents.spaces.length > 0) {
+        //if (contents.spaces.length > 0) {
             this.makeAnnotations(contents);
-        }
+            //}
     }
 
     // Execute the check and display the results produced by rust-code-analysis
@@ -152,7 +152,6 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
                 // Display only global metrics
                 await this.globalMetricsCheck(client, checkRunId, options);
             } else {
-                core.info("here");
                 // Display global and space metrics
                 await this.allMetricsCheck(client, checkRunId, options);
             }
@@ -297,29 +296,7 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
         // NOTE: We can use recursion because we know beforehand that
         // ends and there are not so many levels.
 
-
-        core.info("here here");
-
-        // Iterate over spaces
-        for (const space of contents.spaces) {
-            // Convert the space in an object
-            const space_obj = JSON.parse(space);
-
-            // Create an annotation for the space
-            this.addAnnotation(space_obj);
-
-            // Check if a space contains subspaces
-            if (space_obj.spaces.length > 0) {
-              // Create annotations for subspaces
-              this.makeAnnotations(space_obj);
-            }
-        }
-
-    }
-
-    // Save an annotation in memory
-    private addAnnotation(contents: RcaFile) {
-        let annotation: any = {
+        let annotation: ChecksCreateParamsOutputAnnotations = {
             path: contents.name,
             start_line: contents.start_line,
             end_line: contents.end_line,
@@ -332,7 +309,41 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
         // Retrieving the file from GitHub and getting the length of the column?
 
         this.annotations.push(annotation);
+
+
+        // Iterate over spaces
+        /*for (const space of contents.spaces) {
+            // Convert the space in an object
+            const space_obj = JSON.parse(space);
+
+            // Create an annotation for the space
+            this.addAnnotation(space_obj);
+
+            // Check if a space contains subspaces
+            if (space_obj.spaces.length > 0) {
+              // Create annotations for subspaces
+              this.makeAnnotations(space_obj);
+            }
+            }*/
+
     }
+
+    // Save an annotation in memory
+    /*private addAnnotation(_contents: RcaFile) {
+        let annotation: ChecksCreateParamsOutputAnnotations = {
+            path: contents.name,
+            start_line: contents.start_line,
+            end_line: contents.end_line,
+            annotation_level: 'notice',
+            title: contents.name,
+            message: this.getAnnotationMetrics(contents.metrics),
+        };
+
+        // FIXME: Perhaps we should do something for spaces on a single line.
+        // Retrieving the file from GitHub and getting the length of the column?
+
+        this.annotations.push(annotation);
+        }*/
 
 
 
@@ -345,7 +356,7 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
 
 ## Results
 
-${this.file_metrics.join('\n')}`; 
+${this.file_metrics.join('\n')}`;
     }
 
     // Return file metrics formatted as markdown
