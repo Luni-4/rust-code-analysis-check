@@ -301,6 +301,8 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
             // Convert the space in an object
             const space_obj = JSON.parse(space);
 
+            core.info(space_obj)
+
             // Create an annotation for the space
             this.addAnnotation(space_obj);
 
@@ -323,6 +325,8 @@ See https://github.com/Luni-4/rust-code-analysis-check#limitations for details.`
             title: contents.name,
             message: this.getAnnotationMetrics(contents.metrics),
         };
+
+        core.info("here");
 
         // FIXME: Perhaps we should do something for spaces on a single line.
         // Retrieving the file from GitHub and getting the length of the column?
